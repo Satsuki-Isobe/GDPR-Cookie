@@ -1,0 +1,119 @@
+.background {
+  width: calc(100% - 16px);
+  position: fixed;
+  left: 8px;
+}
+
+.background .adjust {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .background .adjust {
+    padding: 0 10px;
+  }
+}
+
+.background .block {
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .background .block {
+    width: 85%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 12px 0;
+  }
+}
+
+.background .block .text {
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+  letter-spacing: 0.7px;
+}
+
+.background .block .button {
+  padding: 8px 12px;
+  font-size: 13px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 540px) {
+  .background .block .button {
+    width: 100%;
+  }
+}
+
+.background .cross {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  right: 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .background .cross {
+    top: 22px;
+  }
+}
+
+.background .cross:before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: #878787;
+  top: 50%;
+  -webkit-transform: rotate(45deg) translateY(-50%);
+          transform: rotate(45deg) translateY(-50%);
+}
+
+.background .cross:after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: #878787;
+  top: 50%;
+  -webkit-transform: rotate(-45deg) translateY(-50%);
+          transform: rotate(-45deg) translateY(-50%);
+}
+/*# sourceMappingURL=style.module.css.map */

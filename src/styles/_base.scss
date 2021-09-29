@@ -1,0 +1,14 @@
+// ブレークポイント宣言
+$breakpoints: (
+  'pc': 'screen and (max-width: 1440px)',
+  'tb': 'screen and (max-width: 1080px)',
+  'sp': 'screen and (max-width: 768px)',
+  'xsp': 'screen and (max-width: 540px)',
+  'xxsp': 'screen and (max-width: 350px)',
+);
+
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}

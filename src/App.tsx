@@ -1,25 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import style from './styles/style.module.css';
+import Cookies from 'js-cookie'
+import { FC, useEffect, useState } from 'react';
+import {Block} from './components/Block';
+
+const App: FC = () => {
+
+  type Basic = {
+    mode: string;
+    position: string;
+    text: string;
+    button: string;
+  }
+
+  const [basic, setBasic] =  useState<Basic>({
+    mode: "white",
+    position: "top",
+    text: "テキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリアテキストエリア",
+    button: "同意して閉じる"
+  })
+
+  const propagation: string = basic.mode === "white" ? "#fffffff2" : "#000000f2"
+  const contrarian: string  = basic.mode === "white" ? "#000000f2" : "#fffffff2"
+
+  function checkCookie(){
+    const getCookie = Cookies.get('name')
+
+    if(!getCookie){
+      const gdprCookie = document.getElementById('gdpr_cookie')!
+      gdprCookie.style.display = "block"
+    }
+  }
+
+  useEffect(() => {
+    checkCookie()
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+    {basic.position === "top" ?
+      <div className={style.background} style={{background: propagation, top: "8px"}}>
+        <Block propagation={propagation} contrarian={contrarian} text={basic.text} button={basic.button} />
+      </div>
+     :
+      <div className={style.background} style={{background: propagation, bottom: "8px"}}>
+        <Block propagation={propagation} contrarian={contrarian} text={basic.text} button={basic.button} />
+      </div>
+     }
+  </>
   );
 }
 

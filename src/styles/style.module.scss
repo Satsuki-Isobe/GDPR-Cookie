@@ -1,0 +1,77 @@
+@import './base';
+
+.background{
+    width: calc(100% - 16px);
+    position: fixed;
+    left: 8px;
+    .adjust{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        @include mq(){
+            padding: 0 10px;
+        }
+    }
+    .block{
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        @include mq(){
+            width: 85%;
+            flex-direction: column;
+            padding: 12px 0;
+        }
+        .text{
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.5;
+            letter-spacing: 0.7px;
+        }
+        .button{
+            padding: 8px 12px;
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+            cursor: pointer;
+            @include mq(xsp){
+                width: 100%;
+            }
+        }
+    }
+    .cross{
+        position: absolute;
+        content: "";
+        width: 20px;
+        height: 20px;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        @include mq(sp){
+            top: 22px;
+        }
+        &:before{
+            position: absolute;
+            content: "";
+            width: 20px;
+            height: 1px;
+            background: #878787;
+            top: 50%;
+            transform: rotate(45deg) translateY(-50%);
+        }
+        &:after{
+            position: absolute;
+            content: "";
+            width: 20px;
+            height: 1px;
+            background: #878787;
+            top: 50%;
+            transform: rotate(-45deg) translateY(-50%);
+        }
+    }
+}
