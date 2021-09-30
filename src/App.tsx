@@ -1,8 +1,8 @@
 
-import style from './styles/style.module.css';
 import Cookies from 'js-cookie'
-import { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 import {Block} from './components/Block';
+import style from './styles/style.module.css';
 import './styles/gdpr.css'
 
 const App: FC<ReactNode> = ({children}) => {
