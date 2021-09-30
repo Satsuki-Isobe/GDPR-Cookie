@@ -1,16 +1,16 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import style from '../styles/style.module.css'
 import Cookies from 'js-cookie'
 
 type Props = {
     propagation: string;
     contrarian: string;
-    text: string; 
-    button: string;
+    text: ReactNode; 
+    button: string | undefined;
 }
 
 export const Block: FC<Props> = (props) => {
-    const { propagation, contrarian, text, button } = props
+    const { propagation = "#fffffff2", contrarian = "#000000f2", text = "Cookieを利用してもよろしいですか。", button = "許可する" } = props
 
     function event(){
         Cookies.set('name', 'value', { expires: 7 })
