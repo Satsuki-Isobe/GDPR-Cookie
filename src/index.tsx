@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-const text = document.getElementById('gdpr_cookie')?.innerText
+const text = document.getElementById('gdpr_cookie')?.innerHTML
 
 ReactDOM.render(
   <React.StrictMode>
