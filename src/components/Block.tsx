@@ -14,7 +14,7 @@ export const Block: FC<Props> = (props) => {
     const { propagation = "#fffffff2", contrarian = "#000000f2", text = "Cookieを利用してもよろしいですか。", button = "許可する", name = "gdpr_cookie" } = props
 
     function event(){
-        Cookies.set(name, 'ok', { expires: 7 })
+        Cookies.set(name, 'ok', { expires: 365 })
         const gdprCookie = document.getElementById('gdpr_cookie')!
         gdprCookie.style.display = "none"
     }

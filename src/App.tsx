@@ -24,12 +24,20 @@ const App: FC<ReactNode> = ({children}) => {
       const getMode = gdprCookie.getAttribute('mode')?.toString()
       const getPosition = gdprCookie.getAttribute('position')?.toString()
       const getButton = gdprCookie.getAttribute('button')?.toString()
-      // const getName = gdprCookie.getAttribute('name')?.toString()
+
+      if(!(getMode === "white" || getMode === "black")){
+        throw new Error("HTMLにmodeプロパティがありません。もしくはwhite/blackの値を正しく付与してください。")
+      }
+      if(!(getPosition === "top" || getPosition === "bottom")){
+        throw new Error("HTMLにpositionプロパティがありません。もしくはtop/bottomの値を正しく付与してください。")
+      }
+      if(!getButton){
+        throw new Error("HTMLにbuttonプロパティがありません。ボタンに適用する好きな文字列を値として付与してください。")
+      }
 
       setMode(getMode)
       setPosition(getPosition)
       setButton(getButton)
-      // setName(getName)
       gdprCookie.style.display = "block"
     }
   }
@@ -37,6 +45,9 @@ const App: FC<ReactNode> = ({children}) => {
   useLayoutEffect(() => {
     const gdprCookie = document.getElementById('gdpr_cookie')!
     const getName = gdprCookie.getAttribute('name')?.toString()!
+    if(!getName){
+      throw new Error("HTMLにnameプロパティがありません。Cookieのnameに適用する好きな文字列を値として付与してください。")
+    }
     setName(getName)
     checkCookie(getName)
   })
