@@ -17,10 +17,10 @@ const App: FC<ReactNode> = ({children}) => {
 
   function checkCookie(name:string){
     const getCookie = Cookies.get(name)
+    const gdprCookie = document.getElementById('gdpr_cookie')!
+    const child = gdprCookie.children
 
     if(!getCookie){
-      const gdprCookie = document.getElementById('gdpr_cookie')!
-
       const getMode = gdprCookie.getAttribute('mode')?.toString()
       const getPosition = gdprCookie.getAttribute('position')?.toString()
       const getButton = gdprCookie.getAttribute('button')?.toString()
@@ -38,8 +38,10 @@ const App: FC<ReactNode> = ({children}) => {
       setMode(getMode)
       setPosition(getPosition)
       setButton(getButton)
-      gdprCookie.style.display = "block"
+      child[0].style.opacity = "1"
+      return
     }
+    child[0].style.opacity = "0"
   }
 
   useLayoutEffect(() => {

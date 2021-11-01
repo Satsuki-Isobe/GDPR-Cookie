@@ -16,12 +16,17 @@ export const Block: FC<Props> = (props) => {
     function event(){
         Cookies.set(name, 'ok', { expires: 365 })
         const gdprCookie = document.getElementById('gdpr_cookie')!
-        gdprCookie.style.display = "none"
+        const child = gdprCookie.children
+        child[0].style.opacity = "0"
+        child[0].style.transform = "translateY(100%)"
+
     }
 
     function crossEvent(){
         const gdprCookie = document.getElementById('gdpr_cookie')!
-        gdprCookie.style.display = "none"
+        const child = gdprCookie.children
+        child[0].style.opacity = "0"
+        child[0].style.transform = "translateY(100%)"
     }
 
     useEffect(() => {

@@ -4,6 +4,8 @@
   left: 0;
   bottom: 0;
   z-index: 99999999;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 .background .adjust {
