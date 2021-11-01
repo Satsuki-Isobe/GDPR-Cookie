@@ -68,7 +68,7 @@
 .background .block .text {
   font-size: 13px;
   margin: 0;
-  line-height: inherit;
+  line-height: 2em;
   letter-spacing: 0.7px;
   width: 100%;
   display: inline-block;
