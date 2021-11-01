@@ -55,11 +55,11 @@ const App: FC<ReactNode> = ({children}) => {
   return (
   <>
     {position === "top" ?
-      <div className={style.background} style={{background: propagation, top: "8px"}}>
+      <div className={style.background} style={{background: propagation}}>
         <Block propagation={propagation} contrarian={contrarian} text={children} button={button} name={name} />
       </div>
      :
-      <div className={style.background} style={{background: propagation, bottom: "8px"}}>
+      <div className={style.background} style={{background: propagation}}>
         <Block propagation={propagation} contrarian={contrarian} text={children} button={button} name={name} />
       </div>
      }
