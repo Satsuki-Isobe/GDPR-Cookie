@@ -17,13 +17,24 @@ const App: FC<ReactNode> = ({children}) => {
 
   function checkCookie(name:string){
     const getCookie = Cookies.get(name)
-    const gdprCookie = document.getElementById('gdpr_cookie')!
-    const child = gdprCookie.children
+    const gdprCookie = document.getElementById('gdpr_cookie')
+    if(!gdprCookie){
+      throw new Error("HTMLにid=\"gdpr_cookie\"を含む記述がありません。")
+    }
+    const child: HTMLCollection = gdprCookie.children
 
     if(!getCookie){
       const getMode = gdprCookie.getAttribute('mode')?.toString()
       const getPosition = gdprCookie.getAttribute('position')?.toString()
       const getButton = gdprCookie.getAttribute('button')?.toString()
+      const crossButton = gdprCookie.querySelector('span')!
+      const getCross = () => {
+        const cross = gdprCookie.getAttribute('cross')?.toString()
+        if(cross === "false"){
+          return false
+        }
+        return true
+      }
 
       if(!(getMode === "white" || getMode === "black")){
         throw new Error("HTMLにmodeプロパティがありません。もしくはwhite/blackの値を正しく付与してください。")
@@ -33,6 +44,9 @@ const App: FC<ReactNode> = ({children}) => {
       }
       if(!getButton){
         throw new Error("HTMLにbuttonプロパティがありません。ボタンに適用する好きな文字列を値として付与してください。")
+      }
+      if(!getCross()){
+        crossButton.style.display = "none"
       }
 
       setMode(getMode)
