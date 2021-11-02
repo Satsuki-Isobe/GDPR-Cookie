@@ -1,19 +1,14 @@
 
 import Cookies from 'js-cookie'
-import React, { FC, ReactNode, useEffect, useLayoutEffect, useState } from 'react';
+import React, { FC, ReactNode, useLayoutEffect, useState } from 'react';
 import {Block} from './components/Block';
-import style from './styles/style.module.css';
-import './styles/gdpr.css'
+import './styles/gdpr.scss'
 
 const App: FC<ReactNode> = ({children}) => {
 
-  const [mode, setMode] = useState<string>()
   const [position, setPosition] = useState<string>()
   const [button, setButton] = useState<string | undefined>()
   const [name, setName] = useState<string>()
-
-  const propagation: string = mode === "white" ? "#fffffff2" : "#000000f2"
-  const contrarian: string  = mode === "white" ? "#000000f2" : "#fffffff2"
 
   function checkCookie(name:string){
     const getCookie = Cookies.get(name)
@@ -36,9 +31,6 @@ const App: FC<ReactNode> = ({children}) => {
         return true
       }
 
-      if(!(getMode === "white" || getMode === "black")){
-        throw new Error("HTMLにmodeプロパティがありません。もしくはwhite/blackの値を正しく付与してください。")
-      }
       if(!(getPosition === "top" || getPosition === "bottom")){
         throw new Error("HTMLにpositionプロパティがありません。もしくはtop/bottomの値を正しく付与してください。")
       }
@@ -49,10 +41,12 @@ const App: FC<ReactNode> = ({children}) => {
         crossButton.style.display = "none"
       }
 
-      setMode(getMode)
       setPosition(getPosition)
       setButton(getButton)
-      child[0].style.opacity = "1"
+      setTimeout(() => {
+        child[0].style.transform = "translateY(0)"
+        child[0].style.opacity = "1"
+      }, 1000)
       return
     }
     child[0].style.opacity = "0"
@@ -71,12 +65,12 @@ const App: FC<ReactNode> = ({children}) => {
   return (
   <>
     {position === "top" ?
-      <div className={style.background} style={{background: propagation}}>
-        <Block propagation={propagation} contrarian={contrarian} text={children} button={button} name={name} />
+      <div className={`gdpr_background`}>
+        <Block text={children} button={button} name={name} />
       </div>
      :
-      <div className={style.background} style={{background: propagation}}>
-        <Block propagation={propagation} contrarian={contrarian} text={children} button={button} name={name} />
+      <div className={`gdpr_background`}>
+        <Block text={children} button={button} name={name} />
       </div>
      }
   </>

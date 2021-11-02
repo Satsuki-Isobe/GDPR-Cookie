@@ -1,0 +1,95 @@
+@import './base';
+
+#gdpr_cookie{
+    .gdpr_background{
+        width: 100%;
+        transform: translateY(100%);
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 99999999;
+        transition: .3s;
+        background: #fffffff2;
+        color: #000000f2;
+        .gdpr_adjust{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            @include mq(){
+                padding: 0 10px;
+            }
+        }
+        .gdpr_block{
+            width: 50%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            @include mq(pc){width: 70%;}
+            @include mq(tb){width: 92%;}
+            @include mq(){
+                width: 85%;
+                flex-direction: column;
+                padding: 12px 0;
+            }
+            .gdpr_text{
+                font-size: 13px;
+                margin: 0;
+                line-height: 2em;
+                letter-spacing: 0.7px;
+                width: 100%;
+                display: inline-block;
+                a{
+                    text-decoration: underline;
+                }
+            }
+            .gdpr_button{
+                padding: 8px 12px;
+                font-size: 13px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                white-space: nowrap;
+                background: #000000f2;
+                color: #fffffff2;
+                cursor: pointer;
+                @include mq(xsp){
+                    width: 100%;
+                }
+            }
+        }
+        .gdpr_cross{
+            position: absolute;
+            content: "";
+            width: 20px;
+            height: 20px;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            @include mq(sp){
+                top: 22px;
+            }
+            &:before{
+                position: absolute;
+                content: "";
+                width: 20px;
+                height: 1px;
+                background: #878787;
+                top: 50%;
+                transform: rotate(45deg) translateY(-50%);
+            }
+            &:after{
+                position: absolute;
+                content: "";
+                width: 20px;
+                height: 1px;
+                background: #878787;
+                top: 50%;
+                transform: rotate(-45deg) translateY(-50%);
+            }
+        }
+    }
+}
