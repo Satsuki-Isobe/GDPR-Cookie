@@ -21,13 +21,6 @@ const App: FC<ReactNode> = ({children}) => {
     if(!getCookie){
       const getAllowButton = gdprCookie.getAttribute('allowButton')?.toString()
       const getRefuseButton = gdprCookie.getAttribute('refuseButton')?.toString()
-      const getCross = () => {
-        const cross = gdprCookie.getAttribute('cross')?.toString()
-        if(cross === "false"){
-          return false
-        }
-        return true
-      }
 
       if(!getAllowButton){
         throw new Error("HTMLにallowButtonプロパティがありません。ボタンに適用する好きな文字列を値として付与してください。")
