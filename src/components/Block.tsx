@@ -4,12 +4,13 @@ import Cookies from 'js-cookie'
 
 type Props = {
     text: ReactNode; 
-    button: string | undefined;
+    allowButton: string | undefined;
+    refuseButton: string | undefined;
     name: string | undefined;
 }
 
 export const Block: FC<Props> = (props) => {
-    const { text = "Cookieを利用してもよろしいですか。", button = "許可する", name = "gdpr_cookie" } = props
+    const { text = "Cookieを利用してもよろしいですか。", allowButton = "許可する", refuseButton = "拒否する", name = "gdpr_cookie" } = props
 
     function event(){
         Cookies.set(name, 'ok', { expires: 365 })
@@ -20,7 +21,7 @@ export const Block: FC<Props> = (props) => {
 
     }
 
-    function crossEvent(){
+    function refuseEvent(){
         const gdprCookie = document.getElementById('gdpr_cookie')!
         const child = gdprCookie.children
         child[0].style.opacity = "0"
@@ -37,9 +38,11 @@ export const Block: FC<Props> = (props) => {
         <div className={`gdpr_adjust`}>
             <div className={`gdpr_block`}>
                 <p className={`gdpr_text text_area`}></p>
-                <button className={`gdpr_button`} onClick={() => event()}>{button}</button>
+                <div className={`gdpr_buttons`}>
+                    <button className={`gdpr_button gdpr_allow_button`} onClick={() => event()}>{allowButton}</button>
+                    <button className={`gdpr_button gdpr_refuse_button`} onClick={() => refuseEvent()}>{refuseButton}</button>
+                </div>
             </div>
-            <span className={`gdpr_cross`} onClick={() => crossEvent()}></span>
         </div>
         </>
     )

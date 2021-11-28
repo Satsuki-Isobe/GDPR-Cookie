@@ -2,61 +2,81 @@
 
 #gdpr_cookie{
     .gdpr_background{
-        width: 100%;
-        transform: translateY(100%);
+        width: calc(100% - 16px);
+        transform: translateY(calc(100% + 8px));
         position: fixed;
-        left: 0;
-        bottom: 0;
+        left: 8px;
+        bottom: 8px;
         z-index: 99999999;
         transition: .3s;
         background: #fffffff2;
+        border-radius: 8px;
         color: #000000f2;
         .gdpr_adjust{
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 16px;
+            padding: 12px 16px 16px;
             @include mq(){
-                padding: 0 10px;
+
             }
         }
         .gdpr_block{
-            width: 50%;
+            width: auto;
             max-width: 900px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            @include mq(pc){width: 70%;}
-            @include mq(tb){width: 92%;}
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px 0;
             @include mq(){
-                width: 85%;
                 flex-direction: column;
-                padding: 12px 0;
             }
             .gdpr_text{
                 font-size: 13px;
+                width: auto;
                 margin: 0;
                 line-height: 2em;
                 letter-spacing: 0.7px;
-                width: 100%;
                 display: inline-block;
                 a{
                     text-decoration: underline;
                 }
             }
-            .gdpr_button{
-                padding: 8px 12px;
-                font-size: 13px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                white-space: nowrap;
-                background: #000000f2;
-                color: #fffffff2;
-                cursor: pointer;
-                @include mq(xsp){
-                    width: 100%;
+            .gdpr_buttons{
+                width: auto;
+                display: inline-block;
+                @include mq(xxsp){
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                .gdpr_button{
+                    display: inline-block;
+                    width: auto;
+                    min-width: 150px;
+                    margin: 0 12px 0 0;
+                    padding: 10px 30px;
+                    font-size: 13px;
+                    line-height: 1;
+                    white-space: nowrap;
+                    border: none;
+                    border-radius: 999px;
+                    cursor: pointer;
+                    @include mq(xxsp){
+                        width: calc(100%) ;
+                    }
+                    &:last-child{
+                        margin: 0;
+                    }
+                }
+                .gdpr_allow_button{
+                    background: #000000f2;
+                    color: #fffffff2;
+                }
+                .gdpr_refuse_button{
+                    background: #fffffff2;
+                    color: #000000f2;
+                    border: 1px solid #000000f2;
                 }
             }
         }

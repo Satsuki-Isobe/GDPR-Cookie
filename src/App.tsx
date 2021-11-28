@@ -6,8 +6,8 @@ import './styles/gdpr.scss'
 
 const App: FC<ReactNode> = ({children}) => {
 
-  const [position, setPosition] = useState<string>()
-  const [button, setButton] = useState<string | undefined>()
+  const [allowButton, setAllowButton] = useState<string | undefined>()
+  const [refuseButton, setRefuseButton] = useState<string | undefined>()
   const [name, setName] = useState<string>()
 
   function checkCookie(name:string){
@@ -19,10 +19,8 @@ const App: FC<ReactNode> = ({children}) => {
     const child: HTMLCollection = gdprCookie.children
 
     if(!getCookie){
-      const getMode = gdprCookie.getAttribute('mode')?.toString()
-      const getPosition = gdprCookie.getAttribute('position')?.toString()
-      const getButton = gdprCookie.getAttribute('button')?.toString()
-      const crossButton = gdprCookie.querySelector('span')!
+      const getAllowButton = gdprCookie.getAttribute('allowButton')?.toString()
+      const getRefuseButton = gdprCookie.getAttribute('refuseButton')?.toString()
       const getCross = () => {
         const cross = gdprCookie.getAttribute('cross')?.toString()
         if(cross === "false"){
@@ -31,18 +29,15 @@ const App: FC<ReactNode> = ({children}) => {
         return true
       }
 
-      if(!(getPosition === "top" || getPosition === "bottom")){
-        throw new Error("HTMLにpositionプロパティがありません。もしくはtop/bottomの値を正しく付与してください。")
+      if(!getAllowButton){
+        throw new Error("HTMLにallowButtonプロパティがありません。ボタンに適用する好きな文字列を値として付与してください。")
       }
-      if(!getButton){
-        throw new Error("HTMLにbuttonプロパティがありません。ボタンに適用する好きな文字列を値として付与してください。")
-      }
-      if(!getCross()){
-        crossButton.style.display = "none"
+      if(!getRefuseButton){
+        throw new Error("HTMLにrefuseButtonプロパティがありません。ボタンに適用する好きな文字列を値として付与してください。")
       }
 
-      setPosition(getPosition)
-      setButton(getButton)
+      setAllowButton(getAllowButton)
+      setRefuseButton(getRefuseButton)
       setTimeout(() => {
         child[0].style.transform = "translateY(0)"
         child[0].style.opacity = "1"
@@ -64,15 +59,9 @@ const App: FC<ReactNode> = ({children}) => {
 
   return (
   <>
-    {position === "top" ?
-      <div className={`gdpr_background`}>
-        <Block text={children} button={button} name={name} />
-      </div>
-     :
-      <div className={`gdpr_background`}>
-        <Block text={children} button={button} name={name} />
-      </div>
-     }
+    <div className={`gdpr_background`}>
+      <Block text={children} allowButton={allowButton} refuseButton={refuseButton} name={name} />
+    </div>
   </>
   );
 }
